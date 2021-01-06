@@ -18,9 +18,13 @@ const formatterPositiveNegative = (number) => {
   return money;
 };
 
+const fixed = (number) => {
+  return number.toFixed(2).replace(".",",") + "%"
+}
+
+
 export default function Installment({ data }) {
   const { id, amount, difference, rate, profit } = data;
-
   // const classGoodCapital = "green-text darken-4";
   // const classBadCapital = "red-text darken-4";
   const classGoodRate = "blue-text darken-4";
@@ -37,17 +41,17 @@ export default function Installment({ data }) {
     <div className="col s6 m4 l3" style={styles.flexRow}>
       <div style={gradeStyle}>{id}</div>
       <div>
-          <div style={styles.alignFonts}>
-            <div style={classCapital}>
-              <strong>Montante:{formatNumber(amount)}</strong>
-            </div>
-            <div style={classCapital}>
-              <strong>Juros:{formatterPositiveNegative(difference)}</strong>
-            </div>
-            <div className={classRate}>
-              <strong>Taxa:{rate}%</strong>
-            </div>
+        <div style={styles.alignFonts}>
+          <div style={classCapital}>
+            <strong>Montante:{formatNumber(amount)}</strong>
           </div>
+          <div style={classCapital}>
+            <strong>Juros:{formatterPositiveNegative(difference)}</strong>
+          </div>
+          <div className={classRate}>
+            <strong>Taxa:{fixed(rate)}</strong>
+          </div>
+        </div>
       </div>
     </div>
   );

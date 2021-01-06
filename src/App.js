@@ -30,13 +30,13 @@ export default function App() {
         interest >= 0 ? amount + percentCapital : amount - percentCapital;
 
       //taxe de juros
-      rate = (amount / capital - 1) * 100;
+      rate = amount > 0 ? (amount / capital - 1) * 100 : interest;
 
       newInstallments.push({
         id: currentId++,
         amount,
         difference: (amount - capital).toFixed(2),
-        rate: rate.toFixed(2).replace(".", ","),
+        rate: rate,
         profit: interest > 0,
       });
     }
@@ -77,4 +77,3 @@ export default function App() {
     </div>
   );
 }
-
